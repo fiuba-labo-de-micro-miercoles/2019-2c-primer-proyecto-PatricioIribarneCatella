@@ -15,7 +15,8 @@ loop:
 	
 	; test if the value
 	; is negative or positive
-	add r10, r0
+	; add r10, r0	; no hace falta un suma ficticia	
+	tst r10		; normalmente se usa tst, o cpi r10, 0
 	brmi negative
 
 	clr SIGN
@@ -28,8 +29,9 @@ sum:
 	add ACUM2, r10
 	adc ACUM1, SIGN
 	dec I
-	breq exit
-	rjmp loop
+	; breq exit
+	; rjmp loop
+	brne	loop	; sino, exit
 
 exit:
 	asr ACUM1
