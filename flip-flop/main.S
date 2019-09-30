@@ -18,14 +18,16 @@ main:
 	in r16, _SFR_IO_ADDR(DDRB)
 
 	; put 1 in Q position
-	ldi r17, (1<<Q)
-	or r16, r17
+	;	ldi r17, (1<<Q)
+	;	or r16, r17
+	ori r16, (1<<Q)	; resume las 2 instrucciones anteriores
 
 	; put 0 in J|K|CLK positions
-	clr r17
-	ldi r17, (1<<CLK)|(1<<K)|(1<<J)
-	com r17
-	and r16, r17
+	;clr r17
+	;ldi r17, (1<<CLK)|(1<<K)|(1<<J)
+	;com r17
+	;and r16, r17
+	andi	r16,~(((1<<CLK)|(1<<K)|(1<<J)))	; resume las 4 instrucciones anteriores
 
 	; store the new configuration
 	; in  DDRB
